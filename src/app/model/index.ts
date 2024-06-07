@@ -1,12 +1,12 @@
 import { FormControl } from "@angular/forms";
 
-export type Animal = {
+export type Issue = {
     id: string;
     title: string;
     description: string;
 }
 
-export type AnimalForm = {
+export type IssueForm = {
     id: FormControl<string>;
     title: FormControl<string>;
     description: FormControl<string>;

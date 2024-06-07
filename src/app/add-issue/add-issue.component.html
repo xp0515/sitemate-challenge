@@ -1,0 +1,5 @@
+<form [formGroup]="issueForm">
+    <input formControlName="title">
+    <input formControlName="description">
+    <button (click)="addIssue()" [disabled]="!issueForm.valid">Save</button>
+</form>

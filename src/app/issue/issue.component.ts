@@ -1,35 +1,41 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
-import { Animal, AnimalForm } from '../model';
+import { Issue, IssueForm } from '../model';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'animal',
+  selector: 'issue',
   standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: './animal.component.html',
-  styleUrl: './animal.component.css'
+  templateUrl: './issue.component.html',
+  styleUrl: './issue.component.css'
 })
-export class AnimalComponent {
-  @Input() set animal(value: Animal) {
-    this.animalForm.patchValue({
+export class IssueComponent {
+  @Input() set issue(value: Issue) {
+    this.issueForm.patchValue({
       id: value.id,
       title: value.title,
       description: value.description
     })
+    this.issueForm.disabled;
   };
 
-  @Output() onUpdateAnimal = new EventEmitter<Animal>();
+  @Output() onUpdateIssue = new EventEmitter<Issue>();
+  @Output() onDeleteIssue = new EventEmitter<string>();
 
   private _fb = inject(FormBuilder);
 
-  animalForm = this._fb.group<AnimalForm>({
+  issueForm = this._fb.group<IssueForm>({
     id: new FormControl('4', { nonNullable: true, validators: [Validators.required] }),
     title: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     description: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
   })
 
-  updateAnimal = () => {
-    this.onUpdateAnimal.emit(this.animalForm.getRawValue())
+  updateIssue = (): void => {
+    this.onUpdateIssue.emit(this.issueForm.getRawValue())
+  }
+
+  deleteIssue = (): void => {
+    this.onDeleteIssue.emit(this.issueForm.value.id)
   }
 
 }

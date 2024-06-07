@@ -1,0 +1,6 @@
+<form [formGroup]="issueForm" class="content">
+    <input formControlName="title">
+    <input formControlName="description">
+    <button (click)="updateIssue()">Edit</button>
+    <button (click)="deleteIssue()">Delete</button>
+</form>

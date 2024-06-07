@@ -1,0 +1,5 @@
+<div *ngFor="let issue of issues$ | async">
+    <issue [issue]="issue" (onUpdateIssue)="updateIssue($event)" (onDeleteIssue)="deleteIssue($event)"></issue>
+</div>
+
+<add-issue (onAddIssue)="addIssue($event)"></add-issue>

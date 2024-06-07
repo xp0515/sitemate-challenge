@@ -1,26 +1,26 @@
 import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Animal, AnimalForm } from '../model';
+import { Issue, IssueForm } from '../model';
 
 @Component({
-  selector: 'add-animal',
+  selector: 'add-issue',
   standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: './add-animal.component.html',
-  styleUrl: './add-animal.component.css'
+  templateUrl: './add-issue.component.html',
+  styleUrl: './add-issue.component.css'
 })
-export class AddAnimalComponent {
-  @Output() onAddAnimal = new EventEmitter<Animal>()
+export class AddIssueComponent {
+  @Output() onAddIssue = new EventEmitter<Issue>()
 
   private _fb = inject(FormBuilder);
 
-  animalForm = this._fb.group<AnimalForm>({
+  issueForm = this._fb.group<IssueForm>({
     id: new FormControl('4', { nonNullable: true, validators: [Validators.required] }),
     title: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     description: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
   })
 
-  addAnimal = () => {
-    this.onAddAnimal.emit(this.animalForm.getRawValue());
+  addIssue = () => {
+    this.onAddIssue.emit(this.issueForm.getRawValue());
   }
 }

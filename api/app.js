@@ -21,9 +21,16 @@ app.route('/api')
         res.send(data)
     })
 
-app.get('/api/:id', (req, res) => {
-    res.send(data.find(dog => dog.id === req.params.id))
-})
+app.route('/api/:id')
+    .get((req, res) => {
+        res.send(data.find(animal => animal.id === req.params.id))
+    })
+    .put((req, res) => {
+        console.log(req.body)
+    })
+    .delete((req, res) => {
+        console.log(req.params.id)
+    })
 
 app.listen(port, () => {
     console.log('App running on port ' + port)
