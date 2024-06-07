@@ -1,0 +1,5 @@
+<div *ngFor="let animal of animals$ | async">
+    <animal [animal]="animal" (onUpdateAnimal)="updateAnimal($event)"></animal>
+</div>
+
+<add-animal (onAddAnimal)="addAnimal($event)"></add-animal>
